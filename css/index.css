@@ -1,0 +1,302 @@
+@import url(style.css);
+
+
+
+/*CONTENEDOR GENERAL*/
+main{
+    width: 100%;
+}
+
+
+
+/*CONTENEDOR DE CATEGORIAS*/
+#categories{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#categories > div{
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#categories > div > label > i{
+    width: 50px;
+    font-size: 2rem;
+    text-align: center;
+}
+#categories > div > select {
+    width: calc(90% - 50px);
+    height: 30px;
+    border: 2px solid black;
+    margin: auto;
+}
+
+
+
+/*CONTENEDOR DE OFERTAS*/
+#offers{
+    margin: auto;
+    padding: 2rem 0;
+}
+#offers > div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#offers > div > section{
+    width: 100%;
+    height: 80px;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    animation: 1s balancear 2;
+}
+
+@keyframes balancear{
+	20%{
+		transform: scale(0.7) rotate(-6deg);
+	}
+	30%, 70%{
+		transform: scale(1.1) rotate(6deg);
+	}
+	50%, 90%{
+		transform: scale(1.1) rotate(-6deg);
+	}
+}
+#offers > div > section > i{
+    font-size: 3rem;
+    margin: 0 1rem;
+    color: #ED1B26
+}
+#offers > div > section > h2{
+    font-size: 3rem;
+    text-align: center;
+}
+
+
+#offers > div > .container {
+    width: 100%;
+    height: 500px;
+    margin: auto;
+    position: relative;
+}
+#offers > div > .container img {
+    /* width: 100%; */
+    max-height: 500px;
+    margin: auto;
+    animation: fade 1s;
+    filter: drop-shadow( 4px 6px 12px black);
+}
+#offers > div > .container .arrow {
+    z-index: 2;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: auto;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+#offers > div > .container > .arrow > i{
+    font-size: 3rem;
+}
+#offers > div > .container .arrow-left {
+    left: 2%;
+}
+#offers > div > .container .arrow-right {
+    right: 2%;
+}
+#offers > div > .container .dots {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: auto;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+#offers > div > .container .dots .dot {
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+@keyframes fade {
+    from {
+        opacity: 0.1;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+/*ARTICULOS MAS VENDIDOS*/
+#articles{
+    width: 100%;
+    text-align: center;
+}
+/*CONTENEDOR DE TITULO*/
+#articles > section{
+    width: 100%;
+    height: 50px;
+    background-color: #FFF;
+}
+/*TITULO*/
+#articles > section > h2{
+    width: 14rem;
+    height: 100%;
+    padding: .5rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+    background: var(--color-secondary);
+}
+/*CONTENEDOR DE PRODCTOS*/
+#articles > div{
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+/*CADA PRODUCTO*/
+#articles > div > div{
+    width: 12rem;
+    max-width: 180px;
+    height: 17rem;
+    max-width: 200px;
+    margin: 1rem;
+    background-color: var(--color-primary);
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 10px 10px 11px -9px rgba(0,0,0,0.75);
+}
+#articles > div > div:hover{
+    cursor: pointer;
+    transform: scale(1.15);
+    transition: all .5s ease;
+}
+#articles > div > div > a{
+    width: 100%;
+    height: 100%;
+    padding: .5rem;
+    display: inline-block;
+    justify-content: space-around;
+    color: var(--color-secondary);
+    text-align: center;
+    text-decoration: none;
+}
+#articles > div > div > a > img{
+    width: 95%;
+    height: 60%;
+    margin: auto;
+}
+#articles > div > div > a > div{
+    width: 100%;
+    height: 40%;
+    margin: .5rem auto 0;
+}
+#articles > div > div > a > div > p{
+    height: 30%;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#articles > div > div > a > div > p:nth-child(1)::after{
+    content: ' ...';
+}
+#articles > div > div > a > div > hr{
+    width: 80%;
+    margin: auto;
+    border: 1px solid #000;
+}
+#articles > div > div > a > div > p:nth-child(3){
+    font-size: 1.5rem;
+}
+#articles > div > div > a > div > p:nth-child(3)::before{
+    content: '$ ';
+}
+#articles > button{
+    cursor: pointer;
+    border: none; 
+    padding: 16px 32px;
+    position: relative;
+    border-radius: 10px;
+    background: black;
+}
+#articles > button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -4;
+    width: 100%;
+    height:100%;
+    background: linear-gradient( 60deg,#2ADB62, #E000B9, #C8DE3C, #DEA03C, #E82E20, #DEA03C, #E000B9);
+    background-size: 900%;
+    border-radius: 10px;
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+}
+#articles > button > a{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+}
+#articles > button:hover{
+    background: var(--color-primary);
+    color: black;
+    transition: all .5s ease-in;
+}
+@keyframes glowing{
+    0%{
+        background-position: 0 0;
+    }
+    50%{
+        background-position: 400% 0;
+    }
+    100%{
+        background-position: 0 0;
+    }
+}
+
+
+
+/*ADAPTACIONES*/
+@media screen and (min-width:481px) and (max-width:768px){
+    main{
+        width: 100%;
+        min-width: 481px;
+    }
+}
+
+@media screen and (min-width:769px){
+    main{
+        width: 100%;
+    }
+}
