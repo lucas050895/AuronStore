@@ -1,22 +1,9 @@
 <?php
-    // $servidor = "localhost";
-    // $nombreBD = "gestion";
-    // $usuario = "root";
-    // $password = "";
 
-    // $conexion = new mysqli($servidor,$usuario,$password,$nombreBD);
-
-    // if($conexion -> connect_error){
-    //     die("Error en la conexion de la BD");
-    // }
-
-
-
-
-    $server = 'lucasconde.ddns.net';
+    $server = 'DESKTOP-BJCP0I9';
     $database = 'Gestion';
     $username = 'sa';
-    $password = 'Idm123456';
+    $password = '123456';
 
     try{
         $con = new PDO("sqlsrv:Server=$server;Database=$database",$username,$password);
@@ -29,7 +16,9 @@
 
 
     $rubro = $con->query("SELECT *
-                            FROM invRubro");
+                            FROM invRubro
+                            WHERE nombre NOT LIKE 'rubro%'
+                            ORDER BY nombre");
 
     $ofertas = $con->query("SELECT TOP 5 *
                                 FROM [Gestion].[dbo].[invItem]
@@ -45,7 +34,7 @@
                                 FROM invItem
                                 RIGHT JOIN invPrecioItem
                                 ON invItem.id = invPrecioItem.idItem
-                                WHERE invPrecioItem.precio > 10 AND invItem.tienefoto = 1 AND idrubro = 'EE27FC88-067F-4CE9-8DE2-280C1976C9EB' ")
-
+                                WHERE referenciaArea = 'VTA' AND invItem.tienefoto = 1 AND idrubro = 'EE27FC88-067F-4CE9-8DE2-280C1976C9EB' ");
+    
 
 ?>

@@ -17,6 +17,8 @@ body{
   font-size: 12px;
   --color-primary: #D853AE;
   --color-secondary: #60F712;
+  --color-black: #000;
+  --color-white: #fff;
 }
 
 header{

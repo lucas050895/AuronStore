@@ -31,7 +31,7 @@
                         <?php
                             while($fila = $rubro->fetch()){
                                 ?>
-                                    <option value="<?php echo $fila['id']; ?>"><?php echo $fila['nombre']; ?></option>
+                                    <option value="vistas/rubro.php?id=<?php echo $fila['id']; ?>"><?php echo $fila['nombre']; ?></option>
                                 <?php
                             }
                         ?>
@@ -60,7 +60,7 @@
                         while($fila = $ofertas->fetch()){
                             ?>
                                 
-                                <a href="links/item.php?id=<?php echo $fila['id']; ?>">
+                                <a href="vistas/item.php?id=<?php echo $fila['id']; ?>">
                                     <img  src="assets/img/<?php echo $fila['codigo']; ?>.jpg" alt="<?php echo $fila['nombre']; ?>">
                                 </a>
                             <?php
@@ -102,7 +102,7 @@
                     while($fila = $MasVendidos->fetch()){
                         ?>
                             <div>
-                                <a href="links/item.php?id=<?php echo $fila['id']; ?>">
+                                <a href="vistas/item.php?id=<?php echo $fila['id']; ?>">
                                     <img src="assets/img/<?php echo $fila['codigo']; ?>.jpg" alt="<?php echo $fila['nombre']; ?>">
                                     <div>
                                         <p>
@@ -120,7 +120,7 @@
                 ?>
             </div>
             <button>
-                <a href="http://lucasconde.ddns.net/AuronStore/links/productos.php">ver todos</a>
+                <a href="http://lucasconde.ddns.net/AuronStore/vistas/productos.php">ver todos</a>
             </button>
         </div>
 

@@ -288,15 +288,14 @@ main{
 
 
 /*ADAPTACIONES*/
-@media screen and (min-width:481px) and (max-width:768px){
-    main{
-        width: 100%;
-        min-width: 481px;
-    }
-}
+@media screen and (min-width:700px){
 
-@media screen and (min-width:769px){
-    main{
-        width: 100%;
+
+    #offers > div > .container img {
+        max-height: 300px;
+    }
+
+    #offers{
+        width: 90%;
     }
 }

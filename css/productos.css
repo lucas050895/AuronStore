@@ -111,3 +111,31 @@ main{
     content: '$ ';
 }
 
+
+.paginador{
+    width: 50%;
+    margin: 2em auto 0;
+}
+.paginador > ul{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.paginador > ul > li{
+    width: 3em;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 .5rem;
+    border-radius: 50%;
+    background: var(--color-black);
+    color: var(--color-white); 
+    cursor: pointer;
+}
+.paginador > ul > li > a{
+    color: var(--color-white); 
+    text-decoration: none;
+}
