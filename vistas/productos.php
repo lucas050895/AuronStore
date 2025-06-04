@@ -3,9 +3,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- META -->
     <?php include('../layout/meta.php'); ?>
 
+    <!-- ICONOS -->
     <?php include('../layout/iconos.php'); ?>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
