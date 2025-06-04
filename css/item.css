@@ -1,0 +1,52 @@
+@import url(style.css);
+
+
+
+.items{
+    width: 90%;
+    margin: 3em auto;
+}
+.items > li{
+    max-width: 500px;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    list-style: none;
+    background-color: var(--color-primary);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+/* IMAGEN DEL PRODUCTO */
+.items > li > img{
+    width: 320px;
+    margin: 0 auto 2em;
+    box-shadow: 10px 10px 11px -9px rgba(0,0,0,0.75);
+}
+/* CONTENEDOR DE INFORMACIÓN DEL PRODUCTO */
+.items > li > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: var(--color-secondary);
+}
+/* NOMBRE DEL PRODUCTO */
+.items > li h2:nth-child(1){
+    margin: 1em auto;
+    font-size: 2.5em;
+}
+/* LINEA DE SEPARACIÓN */
+.items > li hr{
+    width: 300px;
+    margin: 0 auto;
+    border: 2px solid black;
+}
+/* PRECIO DEL PRODUCTO */
+.items > li h2:nth-child(3){
+    margin: 1em auto;
+    font-size: 3em;
+}
+.items > li h2:nth-child(3)::before{
+    content: '$ ';
+}
+
+

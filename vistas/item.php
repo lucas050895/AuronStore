@@ -5,51 +5,67 @@
 
 ?>
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- META -->
+    <?php include('../layout/meta.php'); ?>
+    
+    <!-- ICONOS -->
+    <?php include('../layout/iconos.php'); ?>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/item.css">
+</head>
+<body>
+    <main>
+        <!-- MENU DE NAVEGACION -->
+        <?php include("../layout/nav.php"); ?>
+
+
+        <!-- CATEGORIAS -->
+        <?php include("../layout/categories.php"); ?>
+
+
+        <ul class="items">
             <?php
-                        $nuevaCon = $con->query("SELECT id, nombre,
-                                                    LEFT ((((preciocosto * 1350) * 1.21) * 1.80), 9) AS precio
-                                                    FROM invitem
-                                                    WHERE id = '". $_GET['id']."' ");
+                $nuevaCon = $con->query("SELECT invItem.id AS ID,  
+                                                invItem.nombre AS NOMBRE,  
+                                                MAX(invPrecioItem.precio) AS COSTO,  
+                                                MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE  
+                                            FROM invItem
+                                            INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem 
+                                            WHERE invItem.id = '". $_GET['id']."'
+                                            GROUP BY invItem.id, invItem.nombre");
 
-
-
-            while($fila = $nuevaCon->fetch()){
-                ?>
+                while($fila = $nuevaCon->fetch()){ ?>
                     <!-- CADA PRODUCTO -->
                     <li>
                         <img src="../assets/img/image.jpg" alt="">
-                        <a href="producto.php?id=<?php echo $fila[1]; ?>">
                         <div>
                             <!-- DESCRIPCION/NOMBRE -->
-                            <h2><?php echo $fila[1] ?></h2>
+                            <h2><?php echo $fila['NOMBRE'] ?></h2>
+                            <hr>
                             <!-- PRECIO VENTA-->
-                            <h2><?php echo $fila[2] ?></h2>
+                            <h2>
+                                <?php echo number_format(
+                                                ($fila['COSTO'] * $fila['PORCENTAJE'] / 100 + $fila['COSTO'])
+                                                , 2, ',', '.') ?>
+                            </h2>
                             <!-- CODIGO -->
-                            <p><?php echo $fila[0] ?></p>
+                            <p>COD: <?php echo $fila['ID'] ?></p>
                         </div>
-                        </a>
                     </li>
-                <?php
-            }
+            <?php } ?>
+        </ul>
 
 
+        <!-- PIE DE PAGINA -->
+        <?php include("../layout/footer.php"); ?>
+    </main>
+</body>
+</html>
+
+<?php } ?>
 
 
-
-            ?>
-
-    </body>
-    </html>
-
-<?php
-}
-?>
