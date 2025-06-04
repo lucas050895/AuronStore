@@ -17,29 +17,10 @@
         <!-- MENU DE NAVEGACION -->
         <?php include("layout/nav.php"); ?>
 
-        <!-- CATEGORIAS PARA ELEGIR -->
-        <div id="categories">
-            <div>
-                <label for="cate">
-                    <i class="fas fa-outdent fa-flip-horizontal"></i>
-                </label>
 
-                <select name="" id="cate" onchange="location = this.value">
-                    <option value="" selected disabled="disabled">Selecione una categoria</option>
-                        <?php
-                            $rubro = $con->query("SELECT *
-                                                    FROM invRubro
-                                                    WHERE nombre NOT LIKE 'rubro%'
-                                                    ORDER BY nombre");
+        <!-- CATEGORIAS -->
+        <?php include("layout/categories.php"); ?>
 
-                            while($fila = $rubro->fetch()){ ?>
-                                    <option value="vistas/rubro.php?id=<?php echo $fila['id']; ?>">
-                                        <?php echo $fila['nombre']; ?>
-                                    </option>
-                        <?php } ?>
-                </select>
-            </div>
-        </div>
 
         <!-- OFERTAS / SLIDERS AUTOMATICO -->
         <div id="offers">
@@ -61,7 +42,7 @@
                                                     WHERE tieneFoto = 1");
                         
                         while($fila = $ofertas->fetch()){ ?>
-                            <a href="vistas/item.php?id=<?php echo $fila['id']; ?>">
+                            <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['id']; ?>">
                                 <img  src="assets/img/image.jpg" alt="<?php echo $fila['nombre']; ?>">
                             </a>
                     <?php } ?>
@@ -91,36 +72,38 @@
             </div>
         </div>
 
+
         <!-- LO MAS VENDIDO -->
         <div id="articles">
             <section>
                 <h2>Lo más vendidos</h2>
             </section>
             <div class="container_products">
-                <?php $MasVendidos = $con->query("SELECT invItem.id,
-                                                        LEFT (invItem.nombre, 15) AS nombre,
-                                                        invItem.codigo,
-                                                        invItem.tienefoto,
-                                                        invPrecioItem.precio,
-                                                        LEFT (invPrecioItem.precio * 1.21, 7) AS C_IVA
+                <?php $MasVendidos = $con->query("SELECT invItem.id AS ID,  
+                                                        LEFT(invItem.nombre, 15) AS NOMBRE,  
+                                                        MAX(invPrecioItem.precio) AS COSTO,  
+                                                        MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
                                                     FROM invItem
                                                     RIGHT JOIN invPrecioItem
                                                     ON invItem.id = invPrecioItem.idItem
                                                     WHERE referenciaArea = 'VTA'
                                                         AND invItem.tienefoto = 1
-                                                        AND idrubro = 'EE27FC88-067F-4CE9-8DE2-280C1976C9EB' ");
+                                                        AND idrubro = 'EE27FC88-067F-4CE9-8DE2-280C1976C9EB' 
+                                                    GROUP BY invItem.id, invItem.nombre");
 
                     while($fila = $MasVendidos->fetch()){ ?>
                         <div class="products">
-                            <a href="vistas/item.php?id=<?php echo $fila['id']; ?>">
-                                <img src="assets/img/image.jpg" alt="<?php echo $fila['nombre']; ?>">
+                            <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['ID']; ?>">
+                                <img src="assets/img/image.jpg" alt="<?php echo $fila['NOMBRE']; ?>">
                                 <div>
                                     <p>
-                                        <?php echo $fila['nombre']; ?>
+                                        <?php echo $fila['NOMBRE']; ?>
                                     </p>
                                     <hr>
                                     <p>
-                                        <?php echo $fila['C_IVA']; ?>
+                                        <?php echo number_format(
+                                            ($fila['COSTO'] * $fila['PORCENTAJE'] / 100 + $fila['COSTO'])
+                                            , 2, ',', '.') ?>
                                     </p>
                                 </div>
                             </a>
@@ -128,9 +111,10 @@
                 <?php } ?>
             </div>
             <button>
-                <a href="http://lucasconde.ddns.net/AuronStore/vistas/productos.php">ver todos</a>
+                <a href="http://lucasconde.ddns.net/AuronStore/vistas/vendidos.php">ver todos</a>
             </button>
         </div>
+
 
         <!-- PIE DE PAGINA -->
         <?php include("layout/footer.php"); ?>
@@ -140,3 +124,5 @@
     <script src="js/nav.js"></script>
 </body>
 </html>
+
+
