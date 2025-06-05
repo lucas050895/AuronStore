@@ -79,16 +79,15 @@
                 <h2>Lo más vendidos</h2>
             </section>
             <div class="container_products">
-                <?php $MasVendidos = $con->query("SELECT invItem.id AS ID,  
-                                                        LEFT(invItem.nombre, 15) AS NOMBRE,  
-                                                        MAX(invPrecioItem.precio) AS COSTO,  
-                                                        MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
-                                                    FROM invItem
-                                                    RIGHT JOIN invPrecioItem
-                                                    ON invItem.id = invPrecioItem.idItem
-                                                    WHERE referenciaArea = 'VTA'
-                                                        AND invItem.tienefoto = 1
-                                                        AND idrubro = 'EE27FC88-067F-4CE9-8DE2-280C1976C9EB' 
+                <?php $MasVendidos = $con->query("SELECT TOP 6
+                                                            invItem.id AS ID,
+                                                            LEFT(invItem.nombre, 15) AS NOMBRE,
+                                                            MAX(invPrecioItem.precio) AS COSTO,  
+                                                            MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
+                                                    FROM admItemComprobante
+                                                        INNER JOIN invItem ON invItem.id = admItemComprobante.idItem
+                                                        RIGHT JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
+                                                    WHERE admItemComprobante.fechaCreacion < GETDATE()
                                                     GROUP BY invItem.id, invItem.nombre");
 
                     while($fila = $MasVendidos->fetch()){ ?>
