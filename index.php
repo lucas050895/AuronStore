@@ -80,7 +80,7 @@
             </section>
             <div class="container_products">
                 <?php $MasVendidos = $con->query("SELECT TOP 6
-                                                        invItem.id,
+                                                        invItem.id AS ID,
                                                         LEFT(invItem.nombre, 15) AS NOMBRE,
                                                         invItem.cantidadStock,
                                                         MAX(invPrecioItem.precio) AS COSTO,  
