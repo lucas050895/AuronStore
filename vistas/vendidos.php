@@ -24,16 +24,17 @@
 
         <!-- MAS VENDIDOS -->
         <?php
-            $MasVendidos = $con->query("SELECT TOP 60
-                                                invItem.id AS ID,
-                                                LEFT(invItem.nombre, 15) AS NOMBRE,
-                                                MAX(invPrecioItem.precio) AS COSTO,  
-                                                MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
+            $MasVendidos = $con->query("SELECT TOP 20
+                                            invItem.id,
+                                            LEFT(invItem.nombre, 15) AS NOMBRE,
+                                            invItem.cantidadStock,
+                                            MAX(invPrecioItem.precio) AS COSTO,  
+                                            MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
                                         FROM admItemComprobante
-                                            INNER JOIN invItem ON invItem.id = admItemComprobante.idItem
-                                            RIGHT JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
-                                        WHERE admItemComprobante.fechaCreacion < GETDATE()
-                                        GROUP BY invItem.id, invItem.nombre");
+                                        INNER JOIN invItem ON invItem.id = admItemComprobante.idItem
+                                        RIGHT JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
+                                        WHERE admItemComprobante.fechaCreacion < GETDATE() AND invItem.cantidadStock > 0
+                                        GROUP BY invItem.id, invItem.nombre, invItem.cantidadStock;");
         ?>
 
 

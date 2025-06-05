@@ -28,7 +28,7 @@
             $stmt = $con->prepare("SELECT COUNT(DISTINCT invItem.id)
                                     FROM invItem 
                                     INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
-                                    WHERE idrubro = '". $_GET['id']."' ");
+                                    WHERE idrubro = '". $_GET['id']."' AND invItem.cantidadStock > 0");
             $stmt->execute();
             $total_registros = $stmt->fetchColumn();
 
@@ -58,7 +58,7 @@
                                             MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE  
                                     FROM invItem  
                                     INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
-                                    WHERE idrubro = '". $_GET['id']."'
+                                    WHERE idrubro = '". $_GET['id']."' AND invItem.cantidadStock > 0
                                     GROUP BY invItem.id, invItem.nombre  
                                     ORDER BY invItem.nombre  
                                     OFFSET :offset ROWS FETCH NEXT :limit ROWS ONLY;");

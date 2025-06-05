@@ -53,9 +53,10 @@
             $stmt = $con->prepare("SELECT invItem.id AS ID,  
                                             LEFT(invItem.nombre, 15) AS NOMBRE,  
                                             MAX(invPrecioItem.precio) AS COSTO,  
-                                            MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE  
+                                            MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
                                     FROM invItem  
-                                    INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem  
+                                    INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
+                                    WHERE invItem.cantidadStock > 0
                                     GROUP BY invItem.id, invItem.nombre  
                                     ORDER BY invItem.nombre  
                                     OFFSET :offset ROWS FETCH NEXT :limit ROWS ONLY;");
