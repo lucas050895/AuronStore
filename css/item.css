@@ -20,7 +20,7 @@
 .items > li > img{
     width: 320px;
     margin: 0 auto 2em;
-    box-shadow: 10px 10px 11px -9px rgba(0,0,0,0.75);
+    filter: drop-shadow( 4px 6px 12px black);
 }
 /* CONTENEDOR DE INFORMACIÓN DEL PRODUCTO */
 .items > li > div{
