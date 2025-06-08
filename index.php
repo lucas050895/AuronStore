@@ -38,12 +38,21 @@
 
                     <?php
                         $ofertas = $con->query("SELECT TOP 5 *
-                                                    FROM [Gestion].[dbo].[invItem]
-                                                    WHERE tieneFoto = 1");
+                                                    FROM invItem
+                                                    WHERE codigo is not NULL AND codigoBarras is not NULL
+                                                    ORDER BY codigo;");
                         
                         while($fila = $ofertas->fetch()){ ?>
                             <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['id']; ?>">
-                                <img  src="assets/img/image.jpg" alt="<?php echo $fila['nombre']; ?>">
+                                <img  src="assets/img/<?php 
+                                                        if (empty(!$fila['3'])) {
+                                                            echo $fila['3'].'.png';
+                                                        }elseif(empty(!$fila['2'])){
+                                                            echo $fila['2'].'.png';
+                                                        }else{
+                                                            echo 'image.jpg';
+                                                        }
+                                                    ?>" alt="<?php echo $fila['nombre']; ?>">
                             </a>
                     <?php } ?>
 
@@ -81,6 +90,8 @@
             <div class="container_products">
                 <?php $MasVendidos = $con->query("SELECT TOP 6
                                                         invItem.id AS ID,
+                                                        invItem.codigoBarras AS BARRAS,
+                                                        invItem.codigo AS CODIGO,
                                                         LEFT(invItem.nombre, 15) AS NOMBRE,
                                                         invItem.cantidadStock,
                                                         MAX(invPrecioItem.precio) AS COSTO,  
@@ -89,12 +100,20 @@
                                                     INNER JOIN invItem ON invItem.id = admItemComprobante.idItem
                                                     RIGHT JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
                                                     WHERE admItemComprobante.fechaCreacion < GETDATE() AND invItem.cantidadStock > 0
-                                                    GROUP BY invItem.id, invItem.nombre, invItem.cantidadStock;");
+                                                    GROUP BY invItem.id, invItem.codigoBarras, invItem.codigo, invItem.nombre, invItem.cantidadStock;");
 
                     while($fila = $MasVendidos->fetch()){ ?>
                         <div class="products">
                             <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['ID']; ?>">
-                                <img src="assets/img/image.jpg" alt="<?php echo $fila['NOMBRE']; ?>">
+                                <img src="assets/img/<?php 
+                                                        if (empty(!$fila['CODIGO'])) {
+                                                            echo $fila['CODIGO'].'.png';
+                                                        }elseif(empty(!$fila['BARRAS'])){
+                                                            echo $fila['BARRAS'].'.png';
+                                                        }else{
+                                                            echo 'image.jpg';
+                                                        }
+                                                ?>" alt="<?php echo $fila['NOMBRE']; ?>">
                                 <div>
                                     <p>
                                         <?php echo $fila['NOMBRE']; ?>

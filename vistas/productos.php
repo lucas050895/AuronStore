@@ -50,14 +50,16 @@
             $desde = ($pagina - 1) * $por_pagina;
 
             // Ejecutar la consulta con paginación
-            $stmt = $con->prepare("SELECT invItem.id AS ID,  
+            $stmt = $con->prepare("SELECT invItem.id AS ID,
+                                            invItem.codigoBarras AS BARRAS,
+                                            invItem.codigo AS CODIGO,
                                             LEFT(invItem.nombre, 15) AS NOMBRE,  
                                             MAX(invPrecioItem.precio) AS COSTO,  
                                             MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
                                     FROM invItem  
                                     INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
                                     WHERE invItem.cantidadStock > 0
-                                    GROUP BY invItem.id, invItem.nombre  
+                                    GROUP BY invItem.id, invItem.nombre, invItem.codigoBarras, invItem.codigo
                                     ORDER BY invItem.nombre  
                                     OFFSET :offset ROWS FETCH NEXT :limit ROWS ONLY;");
             $stmt->bindParam(':offset', $desde, PDO::PARAM_INT);
@@ -71,7 +73,15 @@
                     foreach($resultados as $fila){ ?>
                         <div class="products">
                             <a href="item.php?id=<?php echo $fila['ID']; ?>">
-                                <img src="../assets/img/image.jpg" alt="<?php echo $fila['NOMBRE']; ?>">
+                                <img src="../assets/img/<?php 
+                                                            if (empty(!$fila['CODIGO'])) {
+                                                                echo $fila['CODIGO'].'.png';
+                                                            }elseif(empty(!$fila['BARRAS'])){
+                                                                echo $fila['BARRAS'].'.png';
+                                                            }else{
+                                                                echo 'image.jpg';
+                                                            }
+                                                        ?>" alt="<?php echo $fila['NOMBRE']; ?>">
                                 <div>
                                     <p>
                                         <?php echo $fila['NOMBRE']; ?>

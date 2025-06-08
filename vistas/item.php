@@ -29,19 +29,29 @@
 
         <ul class="items">
             <?php
-                $nuevaCon = $con->query("SELECT invItem.id AS ID,  
+                $nuevaCon = $con->query("SELECT invItem.id AS ID,
+                                                invItem.codigoBarras AS BARRAS,
+                                                invItem.codigo AS CODIGO,
                                                 invItem.nombre AS NOMBRE,  
                                                 MAX(invPrecioItem.precio) AS COSTO,  
                                                 MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE  
                                             FROM invItem
                                             INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem 
                                             WHERE invItem.id = '". $_GET['id']."'
-                                            GROUP BY invItem.id, invItem.nombre");
+                                            GROUP BY invItem.id, invItem.nombre, invItem.codigoBarras, invItem.codigo");
 
                 while($fila = $nuevaCon->fetch()){ ?>
                     <!-- CADA PRODUCTO -->
                     <li>
-                        <img src="../assets/img/image.jpg" alt="">
+                        <img src="../assets/img/<?php 
+                                                    if (empty(!$fila['CODIGO'])) {
+                                                        echo $fila['CODIGO'].'.png';
+                                                    }elseif(empty(!$fila['BARRAS'])){
+                                                        echo $fila['BARRAS'].'.png';
+                                                    }else{
+                                                        echo 'image.jpg';
+                                                    }
+                                                ?>" alt="<?php echo $fila['NOMBRE']; ?>">
                         <div>
                             <!-- DESCRIPCION/NOMBRE -->
                             <h2><?php echo $fila['NOMBRE'] ?></h2>
