@@ -4,6 +4,7 @@
 main > .container_general{
     display: flex;
     flex-direction: column;
+    margin: 5em auto 0;
 }
 /*CONTENEDOR DE SERVICIOS*/
 .container_general > section{
@@ -11,7 +12,7 @@ main > .container_general{
     max-width: 500px;
     margin: 1em auto 0;
     padding: 20px;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     border: 1px solid  black;
     border-radius: 10px;
     box-shadow: 10px 10px 11px -9px rgba(0,0,0,0.75);
@@ -19,12 +20,14 @@ main > .container_general{
 
 /*SUBTITULO DE SERVICIOS*/
 .container_general > section h2{
+    margin: 1em auto;
+    font-size: 2em;
     text-decoration: underline;
     text-align: center;
 }
 
 .container_general > section p{
-    font-size: 1.5em;
+    font-size: 1.8em;
 }
 
 
@@ -39,7 +42,7 @@ form{
     justify-content: space-around;
     border: 1px solid black;
     border-radius: 5px;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     box-shadow: 10px 10px 11px -9px rgba(0,0,0,0.75);
 }
 form > h2{
@@ -95,7 +98,7 @@ form > input[type="submit"]{
     cursor: pointer;
 }
 form > input[type="submit"]:hover{
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     color: white;
     transition: all .5s ease;
 }

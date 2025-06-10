@@ -60,7 +60,7 @@
                                             MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE  
                                     FROM invItem  
                                     INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
-                                    WHERE idrubro = '". $_GET['id']."' AND invItem.cantidadStock > 0
+                                    WHERE idrubro = '". $_GET['id']."'
                                     GROUP BY invItem.id, invItem.codigoBarras, invItem.codigo, invItem.nombre  
                                     ORDER BY invItem.nombre  
                                     OFFSET :offset ROWS FETCH NEXT :limit ROWS ONLY;");
@@ -77,9 +77,9 @@
                             <a href="item.php?id=<?php echo $fila['ID']; ?>">
                                 <img src="../assets/img/<?php 
                                                         if (empty(!$fila['CODIGO'])) {
-                                                            echo $fila['CODIGO'].'.png';
+                                                            echo $_GET['id'] . '/' . $fila['CODIGO'] . '.png';
                                                         }elseif(empty(!$fila['BARRAS'])){
-                                                            echo $fila['BARRAS'].'.png';
+                                                            echo $_GET['id'] . '/' . $fila['BARRAS'].'.png';
                                                         }else{
                                                             echo 'image.jpg';
                                                         }

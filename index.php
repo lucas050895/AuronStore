@@ -37,22 +37,31 @@
                     </div>
 
                     <?php
-                        $ofertas = $con->query("SELECT TOP 5 *
-                                                    FROM invItem
-                                                    WHERE codigo is not NULL AND codigoBarras is not NULL
-                                                    ORDER BY codigo;");
+                        $ofertas = $con->query("SELECT TOP 5
+                                                    invItem.id AS ID,
+                                                    invItem.codigoBarras AS BARRAS,
+                                                    invItem.codigo AS CODIGO,
+                                                    LEFT(invItem.nombre, 15) AS NOMBRE,
+                                                    invItem.idRubro AS RUBRO,
+                                                    MAX(invPrecioItem.precio) AS COSTO,  
+                                                    MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
+                                                FROM admItemComprobante
+                                                INNER JOIN invItem ON invItem.id = admItemComprobante.idItem
+                                                RIGHT JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
+                                                WHERE invItem.codigoBarras IS NOT NULL AND invItem.codigo IS NOT NULL
+                                                GROUP BY invItem.id, invItem.codigoBarras, invItem.codigo, invItem.nombre, invItem.idRubro");
                         
                         while($fila = $ofertas->fetch()){ ?>
-                            <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['id']; ?>">
+                            <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['ID']; ?>">
                                 <img  src="assets/img/<?php 
-                                                        if (empty(!$fila['3'])) {
-                                                            echo $fila['3'].'.png';
-                                                        }elseif(empty(!$fila['2'])){
-                                                            echo $fila['2'].'.png';
+                                                        if (empty(!$fila['CODIGO'])) {
+                                                            echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
+                                                        }elseif(empty(!$fila['BARRAS'])){
+                                                            echo $fila['RUBRO'] . '/' . $fila['BARRAS'].'.png';
                                                         }else{
                                                             echo 'image.jpg';
                                                         }
-                                                    ?>" alt="<?php echo $fila['nombre']; ?>">
+                                                    ?>" alt="<?php echo $fila['NOMBRE']; ?>">
                             </a>
                     <?php } ?>
 
@@ -93,6 +102,7 @@
                                                         invItem.codigoBarras AS BARRAS,
                                                         invItem.codigo AS CODIGO,
                                                         LEFT(invItem.nombre, 15) AS NOMBRE,
+                                                        invItem.idRubro AS RUBRO,
                                                         invItem.cantidadStock,
                                                         MAX(invPrecioItem.precio) AS COSTO,  
                                                         MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
@@ -100,16 +110,16 @@
                                                     INNER JOIN invItem ON invItem.id = admItemComprobante.idItem
                                                     RIGHT JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
                                                     WHERE admItemComprobante.fechaCreacion < GETDATE() AND invItem.cantidadStock > 0
-                                                    GROUP BY invItem.id, invItem.codigoBarras, invItem.codigo, invItem.nombre, invItem.cantidadStock;");
+                                                    GROUP BY invItem.id, invItem.codigoBarras, invItem.codigo, invItem.nombre, invItem.idRubro ,invItem.cantidadStock;");
 
                     while($fila = $MasVendidos->fetch()){ ?>
                         <div class="products">
                             <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['ID']; ?>">
                                 <img src="assets/img/<?php 
                                                         if (empty(!$fila['CODIGO'])) {
-                                                            echo $fila['CODIGO'].'.png';
+                                                            echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
                                                         }elseif(empty(!$fila['BARRAS'])){
-                                                            echo $fila['BARRAS'].'.png';
+                                                            echo $fila['RUBRO'] . '/' . $fila['BARRAS'].'.png';
                                                         }else{
                                                             echo 'image.jpg';
                                                         }

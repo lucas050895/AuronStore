@@ -7,7 +7,7 @@
     margin: 3em auto;
 }
 .items > li{
-    max-width: 500px;
+    max-width: 400px;
     margin: auto;
     padding: 5px;
     text-align: center;
@@ -18,8 +18,8 @@
 }
 /* IMAGEN DEL PRODUCTO */
 .items > li > img{
-    width: 320px;
-    margin: 0 auto 2em;
+    width: 250px;
+    margin: 0 auto .5em;
     filter: drop-shadow( 4px 6px 12px black);
 }
 /* CONTENEDOR DE INFORMACIÓN DEL PRODUCTO */
@@ -31,7 +31,7 @@
 }
 /* NOMBRE DEL PRODUCTO */
 .items > li h2:nth-child(1){
-    margin: 1em auto;
+    margin: .5em auto;
     font-size: 2.5em;
 }
 /* LINEA DE SEPARACIÓN */
@@ -42,11 +42,19 @@
 }
 /* PRECIO DEL PRODUCTO */
 .items > li h2:nth-child(3){
-    margin: 1em auto;
+    margin: .5em auto;
     font-size: 3em;
 }
 .items > li h2:nth-child(3)::before{
     content: '$ ';
+}
+/* LEYENDA DE STOCK */
+.si_hay{
+    text-transform: uppercase;
+}
+.no_hay{
+    text-transform: uppercase;
+    color: red;
 }
 
 

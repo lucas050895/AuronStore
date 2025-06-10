@@ -29,6 +29,7 @@
                                             invItem.codigoBarras AS BARRAS,
                                             invItem.codigo AS CODIGO,
                                             LEFT(invItem.nombre, 15) AS NOMBRE,
+                                            invItem.idRubro AS RUBRO,
                                             invItem.cantidadStock,
                                             MAX(invPrecioItem.precio) AS COSTO,  
                                             MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
@@ -36,9 +37,8 @@
                                         INNER JOIN invItem ON invItem.id = admItemComprobante.idItem
                                         RIGHT JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
                                         WHERE admItemComprobante.fechaCreacion < GETDATE() AND invItem.cantidadStock > 0
-                                        GROUP BY invItem.id, invItem.codigoBarras, invItem.codigo, invItem.nombre, invItem.cantidadStock;");
+                                        GROUP BY invItem.id, invItem.codigoBarras, invItem.codigo, invItem.nombre, invItem.idRubro, invItem.cantidadStock;");
         ?>
-
 
         <div class="container_products">
             <?php
@@ -46,10 +46,12 @@
                 <div class="products">
                     <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['ID']; ?>">
                         <img src="../assets/img/<?php 
-                                                    if ($fila['CODIGO']) {
-                                                        echo $fila['CODIGO'].'.png';
+                                                    if (empty(!$fila['CODIGO'])) {
+                                                        echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
+                                                    }elseif(empty(!$fila['BARRAS'])){
+                                                        echo $fila['RUBRO'] . '/' . $fila['BARRAS'].'.png';
                                                     }else{
-                                                        echo $fila['BARRAS'].'.png';
+                                                        echo 'image.jpg';
                                                     }
                                                 ?>" alt="<?php echo $fila['NOMBRE']; ?>">
                         <div>

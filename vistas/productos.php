@@ -25,8 +25,9 @@
         <!-- CONSULTA LOS PRODUCTOS -->
         <?php
             // Obtener el número total de registros
-            $stmt = $con->prepare("SELECT COUNT(DISTINCT invItem.id) FROM invItem 
-                                INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem");
+            $stmt = $con->prepare("SELECT COUNT(DISTINCT invItem.id)
+                                        FROM invItem 
+                                        INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem");
             $stmt->execute();
             $total_registros = $stmt->fetchColumn();
 
@@ -53,13 +54,14 @@
             $stmt = $con->prepare("SELECT invItem.id AS ID,
                                             invItem.codigoBarras AS BARRAS,
                                             invItem.codigo AS CODIGO,
+                                            invItem.cantidadStock AS STOCK,
+                                            invItem.idRubro AS RUBRO,
                                             LEFT(invItem.nombre, 15) AS NOMBRE,  
                                             MAX(invPrecioItem.precio) AS COSTO,  
                                             MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE
                                     FROM invItem  
                                     INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem
-                                    WHERE invItem.cantidadStock > 0
-                                    GROUP BY invItem.id, invItem.nombre, invItem.codigoBarras, invItem.codigo
+                                    GROUP BY invItem.id, invItem.nombre, invItem.codigoBarras, invItem.codigo, invItem.cantidadStock, invItem.idRubro
                                     ORDER BY invItem.nombre  
                                     OFFSET :offset ROWS FETCH NEXT :limit ROWS ONLY;");
             $stmt->bindParam(':offset', $desde, PDO::PARAM_INT);
@@ -74,13 +76,13 @@
                         <div class="products">
                             <a href="item.php?id=<?php echo $fila['ID']; ?>">
                                 <img src="../assets/img/<?php 
-                                                            if (empty(!$fila['CODIGO'])) {
-                                                                echo $fila['CODIGO'].'.png';
-                                                            }elseif(empty(!$fila['BARRAS'])){
-                                                                echo $fila['BARRAS'].'.png';
-                                                            }else{
-                                                                echo 'image.jpg';
-                                                            }
+                                                        if (empty(!$fila['CODIGO'])) {
+                                                            echo $fila['RUBRO'] . '/' . $fila['CODIGO'] . '.png';
+                                                        }elseif(empty(!$fila['BARRAS'])){
+                                                            echo $fila['RUBRO'] . '/' . $fila['BARRAS'].'.png';
+                                                        }else{
+                                                            echo 'image.jpg';
+                                                        }
                                                         ?>" alt="<?php echo $fila['NOMBRE']; ?>">
                                 <div>
                                     <p>

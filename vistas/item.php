@@ -32,22 +32,24 @@
                 $nuevaCon = $con->query("SELECT invItem.id AS ID,
                                                 invItem.codigoBarras AS BARRAS,
                                                 invItem.codigo AS CODIGO,
-                                                invItem.nombre AS NOMBRE,  
+                                                invItem.nombre AS NOMBRE,
+                                                invItem.idRubro AS RUBRO,
+                                                invItem.cantidadStock AS STOCK,
                                                 MAX(invPrecioItem.precio) AS COSTO,  
                                                 MAX(invPrecioItem.porcentajeGanacia) AS PORCENTAJE  
                                             FROM invItem
                                             INNER JOIN invPrecioItem ON invItem.id = invPrecioItem.idItem 
                                             WHERE invItem.id = '". $_GET['id']."'
-                                            GROUP BY invItem.id, invItem.nombre, invItem.codigoBarras, invItem.codigo");
+                                            GROUP BY invItem.id, invItem.nombre, invItem.codigoBarras, invItem.codigo, invItem.idRubro, invItem.cantidadStock");
 
                 while($fila = $nuevaCon->fetch()){ ?>
                     <!-- CADA PRODUCTO -->
                     <li>
                         <img src="../assets/img/<?php 
                                                     if (empty(!$fila['CODIGO'])) {
-                                                        echo $fila['CODIGO'].'.png';
+                                                        echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
                                                     }elseif(empty(!$fila['BARRAS'])){
-                                                        echo $fila['BARRAS'].'.png';
+                                                        echo $fila['RUBRO'] . '/' . $fila['BARRAS'].'.png';
                                                     }else{
                                                         echo 'image.jpg';
                                                     }
@@ -62,6 +64,20 @@
                                                 ($fila['COSTO'] * $fila['PORCENTAJE'] / 100 + $fila['COSTO'])
                                                 , 2, ',', '.') ?>
                             </h2>
+                            <!-- STOCK -->
+                            <section>
+                                <?php 
+                                    if ($fila['STOCK'] > 0 ) {
+                                        ?>
+                                            <h2 class="si_hay"><?php echo 'Hay stock'; ?></h2> 
+                                        <?php
+                                    }else{
+                                        ?>
+                                            <h2 class="no_hay"><?php echo 'No hay stock'; ?></h2> 
+                                        <?php
+                                    }
+                                ?>
+                            </section>
                             <!-- CODIGO -->
                             <p>COD: <?php echo $fila['ID'] ?></p>
                         </div>
