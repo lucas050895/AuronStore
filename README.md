@@ -10,14 +10,22 @@ Asimismo, también posee una selección de categorías para una mejor organizaci
 
 <table>
   <tr>
-    <td>
-      ![index](https://github.com/user-attachments/assets/0cf1b16d-eafd-4aef-84f6-27f0eb3b3f40)
-    </td>
-    <td>
-      ![categoria](https://github.com/user-attachments/assets/9677d0d3-83e7-4524-88d4-3a919751f813)
-    </td>
-    <td>
-      ![pie](https://github.com/user-attachments/assets/4162deaf-0aac-42a3-9564-cdb99fd34b6f)
-    </td>
+    
+  <td>
+    
+   ![index](https://github.com/user-attachments/assets/0cf1b16d-eafd-4aef-84f6-27f0eb3b3f40)
+  </td>
+  
+  <td>
+    
+   ![categoria](https://github.com/user-attachments/assets/9eba9bff-b8e8-40a6-b876-abf68b677ec3)
+
+  </td>
+  
+  <td>
+    
+   ![pie](https://github.com/user-attachments/assets/131798f0-a122-4df8-9358-cb55a9d1caff)
+
+  </td>
   </tr>
 </table>
