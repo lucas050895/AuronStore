@@ -74,7 +74,7 @@
                 if($resultados){
                     foreach($resultados as $fila){ ?>
                         <div class="products">
-                            <a href="item.php?id=<?php echo $fila['ID']; ?>">
+                            <a href="item?id=<?php echo $fila['ID']; ?>">
                                 <img src="../assets/img/<?php 
                                                         if (empty(!$fila['CODIGO'])) {
                                                             echo $fila['RUBRO'] . '/' . $fila['CODIGO'] . '.png';
@@ -109,8 +109,8 @@
                 <?php
                     if($pagina !=1){
                 ?>
-                    <li><a href="?pagina=<?php echo 1; ?>"><i class="fas fa-angle-double-left"></i></a></li>
-                    <li><a href="?pagina=<?php echo $pagina-1 ?>"><i class="fas fa-chevron-left"></i></a></li>
+                    <li><a href="http://lucasconde.ddns.net/AuronStore/vistas/productos?pagina=<?php echo 1; ?>"><i class="fas fa-angle-double-left"></i></a></li>
+                    <li><a href="http://lucasconde.ddns.net/AuronStore/vistas/productos?pagina=<?php echo $pagina-1 ?>"><i class="fas fa-chevron-left"></i></a></li>
                 <?php
                     }
                 ?>
@@ -127,8 +127,8 @@
 
                     if($pagina != $total_paginas){    
                 ?>
-                    <li><a href="?pagina=<?php echo $pagina+1 ?>"><i class="fas fa-chevron-right"></i></a></li>
-                    <li><a href="?pagina=<?php echo $total_paginas;?>"><i class="fas fa-angle-double-right"></i></a></li>
+                    <li><a href="http://lucasconde.ddns.net/AuronStore/vistas/productos?pagina=<?php echo $pagina+1 ?>"><i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="http://lucasconde.ddns.net/AuronStore/vistas/productos?pagina=<?php echo $total_paginas;?>"><i class="fas fa-angle-double-right"></i></a></li>
                 <?php
                     }
                 ?>

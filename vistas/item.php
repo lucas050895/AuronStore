@@ -92,6 +92,8 @@
 </body>
 </html>
 
-<?php } ?>
+<?php }else{
+    header("Location: http://lucasconde.ddns.net/AuronStore/index.php");
+}?>
 
 

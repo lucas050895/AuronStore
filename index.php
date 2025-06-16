@@ -52,7 +52,7 @@
                                                 GROUP BY invItem.id, invItem.codigoBarras, invItem.codigo, invItem.nombre, invItem.idRubro");
                         
                         while($fila = $ofertas->fetch()){ ?>
-                            <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['ID']; ?>">
+                            <a href="http://lucasconde.ddns.net/AuronStore/vistas/item?id=<?php echo $fila['ID']; ?>">
                                 <img  src="assets/img/<?php 
                                                         if (empty(!$fila['CODIGO'])) {
                                                             echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
@@ -114,7 +114,7 @@
 
                     while($fila = $MasVendidos->fetch()){ ?>
                         <div class="products">
-                            <a href="http://lucasconde.ddns.net/AuronStore/vistas/item.php?id=<?php echo $fila['ID']; ?>">
+                            <a href="http://lucasconde.ddns.net/AuronStore/vistas/item?id=<?php echo $fila['ID']; ?>">
                                 <img src="assets/img/<?php 
                                                         if (empty(!$fila['CODIGO'])) {
                                                             echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
@@ -140,7 +140,7 @@
                 <?php } ?>
             </div>
             <button>
-                <a href="http://lucasconde.ddns.net/AuronStore/vistas/vendidos.php">ver todos</a>
+                <a href="http://lucasconde.ddns.net/AuronStore/vistas/vendidos">ver todos</a>
             </button>
         </div>
 

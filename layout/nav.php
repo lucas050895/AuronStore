@@ -16,8 +16,8 @@
         
         <ul>
             <li><a href="http://lucasconde.ddns.net/AuronStore/">Inicio</a></li>
-            <li><a href="http://lucasconde.ddns.net/AuronStore/vistas/productos.php">Productos</a></li>
-            <li><a href="http://lucasconde.ddns.net/AuronStore/vistas/servicios.php">Servicios</a></li>
+            <li><a href="http://lucasconde.ddns.net/AuronStore/vistas/productos">Productos</a></li>
+            <li><a href="http://lucasconde.ddns.net/AuronStore/vistas/servicios">Servicios</a></li>
         </ul>
     </nav>
 </header>
