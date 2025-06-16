@@ -14,7 +14,7 @@
                                             ORDER BY nombre");
 
                     while($fila = $rubro->fetch()){ ?>
-                            <option value="http://lucasconde.ddns.net/AuronStore/vistas/rubros.php?id=<?php echo $fila['id']; ?>">
+                            <option value="http://lucasconde.ddns.net/AuronStore/vistas/rubros?id=<?php echo $fila['id']; ?>">
                                 <?php echo $fila['nombre']; ?>
                             </option>
                 <?php } ?>
