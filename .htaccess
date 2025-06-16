@@ -1,6 +1,6 @@
 # Bloquear acceso a carpetas específicas
 RewriteEngine On
-RewriteRule ^(config|layout|php|config|js)/ - [F]
+RewriteRule ^(config|layout|php|config)/ - [F]
 
 ErrorDocument 404 http://lucasconde.ddns.net/AuronStore/vistas/errores/404.php
 ErrorDocument 403 http://lucasconde.ddns.net/AuronStore/vistas/errores/403.php
