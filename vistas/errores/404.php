@@ -8,7 +8,7 @@
     <?php include('../../layout/iconos.php'); ?>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../css/error.css">
+    <link rel="stylesheet" href="../../assets/css/error.css">
 </head>
 <body>
     <h1>404</h1>

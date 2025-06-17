@@ -15,7 +15,7 @@
     <?php include('../layout/iconos.php'); ?>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/item.css">
+    <link rel="stylesheet" href="../assets/css/item.css">
 </head>
 <body>
     <main>
@@ -45,7 +45,7 @@
                 while($fila = $nuevaCon->fetch()){ ?>
                     <!-- CADA PRODUCTO -->
                     <li>
-                        <img src="../img/<?php 
+                        <img src="../assets/img/<?php 
                                                     if (empty(!$fila['CODIGO'])) {
                                                         echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
                                                     }elseif(empty(!$fila['BARRAS'])){

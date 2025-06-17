@@ -10,7 +10,7 @@
     <?php include('layout/iconos.php'); ?>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
     <main>
@@ -53,7 +53,7 @@
                         
                         while($fila = $ofertas->fetch()){ ?>
                             <a href="http://lucasconde.ddns.net/AuronStore/vistas/item?id=<?php echo $fila['ID']; ?>">
-                                <img  src="img/<?php 
+                                <img  src="assets/img/<?php 
                                                         if (empty(!$fila['CODIGO'])) {
                                                             echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
                                                         }elseif(empty(!$fila['BARRAS'])){
@@ -115,7 +115,7 @@
                     while($fila = $MasVendidos->fetch()){ ?>
                         <div class="products">
                             <a href="http://lucasconde.ddns.net/AuronStore/vistas/item?id=<?php echo $fila['ID']; ?>">
-                                <img src="img/<?php 
+                                <img src="assets/img/<?php 
                                                         if (empty(!$fila['CODIGO'])) {
                                                             echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
                                                         }elseif(empty(!$fila['BARRAS'])){
@@ -149,8 +149,8 @@
         <?php include("layout/footer.php"); ?>
     </main>
 
-    <script src="js/script.js"></script>
-    <script src="js/nav.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/nav.js"></script>
 </body>
 </html>
 

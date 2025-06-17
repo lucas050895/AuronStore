@@ -10,7 +10,7 @@
     <?php include('../layout/iconos.php'); ?>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/servicios.css">
+    <link rel="stylesheet" href="../assets/css/servicios.css">
 </head>
 <body>
     <main>
