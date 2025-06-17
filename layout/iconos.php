@@ -5,4 +5,4 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <!-- ICONO PESTAÑA -->
-<link rel="shortcut icon" href="../assets/img/favicon.ico" />
+<link rel="shortcut icon" href="../img/favicon.ico" />
