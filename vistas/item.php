@@ -45,7 +45,7 @@
                 while($fila = $nuevaCon->fetch()){ ?>
                     <!-- CADA PRODUCTO -->
                     <li>
-                        <img src="../assets/img/<?php 
+                        <img src="../img/<?php 
                                                     if (empty(!$fila['CODIGO'])) {
                                                         echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
                                                     }elseif(empty(!$fila['BARRAS'])){

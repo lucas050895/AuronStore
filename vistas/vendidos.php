@@ -45,7 +45,7 @@
                 while($fila = $MasVendidos->fetch()){ ?>
                 <div class="products">
                     <a href="http://lucasconde.ddns.net/AuronStore/vistas/item?id=<?php echo $fila['ID']; ?>">
-                        <img src="../assets/img/<?php 
+                        <img src="../img/<?php 
                                                     if (empty(!$fila['CODIGO'])) {
                                                         echo $fila['RUBRO'] . '/' . $fila['CODIGO'].'.png';
                                                     }elseif(empty(!$fila['BARRAS'])){

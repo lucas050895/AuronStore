@@ -75,7 +75,7 @@
                     foreach($resultados as $fila){ ?>
                         <div class="products">
                             <a href="item?id=<?php echo $fila['ID']; ?>">
-                                <img src="../assets/img/<?php 
+                                <img src="../img/<?php 
                                                         if (empty(!$fila['CODIGO'])) {
                                                             echo $fila['RUBRO'] . '/' . $fila['CODIGO'] . '.png';
                                                         }elseif(empty(!$fila['BARRAS'])){
