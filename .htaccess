@@ -1,27 +1,21 @@
-# BLOQUEAR IMG
+# BLOQUEAR ASSETS
 RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/AuronStore/img/?$ [NC]
-RewriteRule ^ - [F]
-
-<FilesMatch "\.(png|jpg|jpeg)$">
-    Order Allow,Deny
-    Allow from all
-</FilesMatch>
-
-
-# BLOQUEAR CONFIG
-RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/AuronStore/config/?$ [NC]
+RewriteCond %{REQUEST_URI} ^/AuronStore/assets/?$ [NC]
 RewriteRule ^ - [F]
 
 # BLOQUEAR CSS
 RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/AuronStore/css/?$ [NC]
+RewriteCond %{REQUEST_URI} ^/AuronStore/assets/css/?$ [NC]
 RewriteRule ^ - [F]
 
 # BLOQUEAR JS
 RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/AuronStore/js/?$ [NC]
+RewriteCond %{REQUEST_URI} ^/AuronStore/assets/js/?$ [NC]
+RewriteRule ^ - [F]
+
+# BLOQUEAR CONFIG
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/AuronStore/config/?$ [NC]
 RewriteRule ^ - [F]
 
 # BLOQUEAR PHP
