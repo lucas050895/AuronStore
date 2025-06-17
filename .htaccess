@@ -1,11 +1,55 @@
-# Bloquear acceso a carpetas específicas
+# BLOQUEAR IMG
 RewriteEngine On
-RewriteRule ^(config|layout|php|config)/ - [F]
+RewriteCond %{REQUEST_URI} ^/AuronStore/img/?$ [NC]
+RewriteRule ^ - [F]
 
-ErrorDocument 404 http://lucasconde.ddns.net/AuronStore/vistas/errores/404
-ErrorDocument 403 http://lucasconde.ddns.net/AuronStore/vistas/errores/403
+<FilesMatch "\.(png|jpg|jpeg)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
 
+
+# BLOQUEAR CONFIG
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/AuronStore/config/?$ [NC]
+RewriteRule ^ - [F]
+
+# BLOQUEAR CSS
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/AuronStore/css/?$ [NC]
+RewriteRule ^ - [F]
+
+# BLOQUEAR JS
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/AuronStore/js/?$ [NC]
+RewriteRule ^ - [F]
+
+# BLOQUEAR PHP
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/AuronStore/php/?$ [NC]
+RewriteRule ^ - [F]
+
+# BLOQUEAR LAYOUT
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/AuronStore/layout/?$ [NC]
+RewriteRule ^ - [F]
+
+# BLOQUEAR VISTAS
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/AuronStore/vistas/?$ [NC]
+RewriteRule ^ - [F]
+
+# BLOQUEAR VISTAS/ERRORES
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/AuronStore/vistas/errores/?$ [NC]
+RewriteRule ^ - [F]
+
+# QUITAR EXTENSION .php
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php
+
+
+ErrorDocument 404 http://lucasconde.ddns.net/AuronStore/vistas/errores/404
+ErrorDocument 403 http://lucasconde.ddns.net/AuronStore/vistas/errores/403
