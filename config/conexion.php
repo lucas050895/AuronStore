@@ -2,7 +2,7 @@
     $server = 'DESKTOP-BJCP0I9';
     $database = 'Gestion';
     $username = 'sa';
-    $password = '123456';
+    $password = 'Veinte.2025';
 
     try{
         $con = new PDO("sqlsrv:Server=$server;Database=$database",$username,$password);
