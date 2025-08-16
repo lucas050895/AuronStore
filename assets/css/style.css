@@ -248,9 +248,10 @@ footer > section{
   padding: .5rem;
   text-align: center;
 }
-footer > section > p > a{
+footer > section > h3 > a{
   margin: 1rem auto;
   color: #fff;
+  text-decoration: none;
 }
 
 

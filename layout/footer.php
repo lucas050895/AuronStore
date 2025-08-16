@@ -27,7 +27,11 @@
     </div>
 
     <section>
-        <h3>Creado por Lucas Conde <i class="fas fa-copyright"></i> 2024 </h3>
-        <p><a href="http://lucasconde.ddns.net/LucasConde/">lucasconde.ddns.net</a></p>
+        <h3>Creado por 
+            <a href="http://lucasconde.ddns.net/LucasConde">Lucas Conde</a>
+        </h3>
+        <span>
+            Derechos Reservados © 2025
+        </span>
     </section>
 </footer>
